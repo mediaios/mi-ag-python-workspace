@@ -2,6 +2,7 @@ from operator import truediv
 
 from agora.rtc.agora_base import *
 
+
 import time
 from observer.mi_connection_observer import MiConnectionObserver
 from observer.mi_audio_frame_observer import MiAudioFrameObserver
@@ -12,7 +13,7 @@ from agora.rtc.agora_service import AgoraServiceConfig, AgoraService
 from agora.rtc.local_user_observer import IRTCLocalUserObserver
 from agora.rtc.rtc_connection import RTCConnConfig
 config = AgoraServiceConfig()
-config.appid = "20338919f2ca4af4b1d7ec23d8870b56"
+config.appid = "8fec0f4cc82a4689b6ee0e64d50ca33d"
 config.audio_scenario = AudioScenarioType.AUDIO_SCENARIO_CHORUS
 agora_engine = AgoraService()
 config.enable_video = 1
@@ -64,7 +65,7 @@ def create_conn(channel_id,uid=0):
     print("release")
 
 
-create_conn("qitest",9999999)
+create_conn("fsddd",9999999)
 
 agora_engine.release()
 print("QiDebug, end")
