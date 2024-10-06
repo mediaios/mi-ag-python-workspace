@@ -4,19 +4,24 @@ from agora.rtc.agora_base import *
 
 
 import time
+import  os
+from observer.path_utils import get_log_path_with_filename
 from observer.mi_connection_observer import MiConnectionObserver
 from observer.mi_audio_frame_observer import MiAudioFrameObserver
 from observer.mi_local_user_observer import MiLocalUserObserver
 from observer.mi_video_frame_observer import MiVideoFrameObserver
 from agora.rtc.agora_service import AgoraServiceConfig, AgoraService
+from observer.mi_zhipu_video_frame_observer import MiZhiPuVideoFrameObserver
 
 from agora.rtc.local_user_observer import IRTCLocalUserObserver
 from agora.rtc.rtc_connection import RTCConnConfig
 config = AgoraServiceConfig()
-config.appid = "8fec0f4cc82a4689b6ee0e64d50ca33d"
+config.appid = "20338919f2ca4af4b1d7ec23d8870b56"
 config.audio_scenario = AudioScenarioType.AUDIO_SCENARIO_CHORUS
 agora_engine = AgoraService()
 config.enable_video = 1
+config.log_path = get_log_path_with_filename(os.path.splitext(__file__)[0])
+print("qidebug, log path",config.log_path)
 agora_engine.initialize(config)
 
 def create_conn(channel_id,uid=0):
@@ -51,6 +56,8 @@ def create_conn(channel_id,uid=0):
     video_track = agora_engine.create_custom_video_track_frame(video_sender)
     video_frame_observer = MiVideoFrameObserver()
     local_user.register_video_frame_observer(video_frame_observer)
+    # video_frame_observer = MiZhiPuVideoFrameObserver()
+    # local_user.register_video_frame_observer(video_frame_observer)
     video_track.set_enabled(1)
     # local_user.subscribe_all_video()
 
@@ -65,7 +72,7 @@ def create_conn(channel_id,uid=0):
     print("release")
 
 
-create_conn("fsddd",9999999)
+create_conn("qitest",9999999)
 
 agora_engine.release()
 print("QiDebug, end")
