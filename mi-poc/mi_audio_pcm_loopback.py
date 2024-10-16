@@ -132,7 +132,7 @@ async def run_example():
     media_node_factory = agora_service.create_media_node_factory()
     conn_observer = MiConnectionObserver()
     connection.register_observer(conn_observer)
-    connection.connect("", "qitest","9999999")
+    connection.connect("", "qitest_zhipu","9999999")
 
     local_user = connection.get_local_user()
     local_user.set_audio_scenario(AudioScenarioType.AUDIO_SCENARIO_CHORUS)
@@ -143,6 +143,7 @@ async def run_example():
 
     pcm_data_sender = media_node_factory.create_audio_pcm_data_sender()
     audio_track = agora_service.create_custom_audio_track_pcm(pcm_data_sender)
+    audio_track.set_send_delay_ms(10)
     audio_track.set_enabled(1)
     local_user.publish_audio(audio_track)
 
